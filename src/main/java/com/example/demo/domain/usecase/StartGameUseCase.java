@@ -1,5 +1,6 @@
 package com.example.demo.domain.usecase;
 
+import com.example.demo.domain.game.Game;
 import com.example.demo.domain.game.Gamer;
 import com.example.demo.domain.game.command.StartGame;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 @Component
-public class StartGameUseCase implements Function<StartGame, Gamer> {
+public class StartGameUseCase implements Function<StartGame, Game> {
 
     private final GameRepository repository;
     private final Random rand = SecureRandom.getInstanceStrong();
@@ -20,7 +21,7 @@ public class StartGameUseCase implements Function<StartGame, Gamer> {
     }
 
     @Override
-    public Gamer apply(StartGame startGame) {
+    public Game apply(StartGame startGame) {
         var game = repository.findById(startGame.getId());
         var value = rand.nextInt(6);
         game.startGame();
@@ -30,6 +31,6 @@ public class StartGameUseCase implements Function<StartGame, Gamer> {
                 }
         });
 
-        return game.winner();
+        return game;
     }
 }

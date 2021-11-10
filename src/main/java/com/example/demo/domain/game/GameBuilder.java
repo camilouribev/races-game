@@ -12,6 +12,11 @@ public class GameBuilder {
         this.gamers = new HashMap<>();
         this.inProgress = false;
     }
+
+    public static GameBuilder builder(){
+        return new GameBuilder();
+    }
+
     public GameBuilder withWinner(Gamer winner){
         this.winner = winner;
         return this;
@@ -24,7 +29,7 @@ public class GameBuilder {
     }
 
 
-    public GameBuilder withGamer(Gamer gamer){
+    public GameBuilder addGamer(Gamer gamer){
         gamers.put(gamer.id(), gamer);
         return this;
     }

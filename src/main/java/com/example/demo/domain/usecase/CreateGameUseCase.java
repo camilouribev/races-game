@@ -4,7 +4,6 @@ import com.example.demo.domain.game.command.CreateGame;
 import com.example.demo.domain.game.Game;
 import org.springframework.stereotype.Component;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 import java.util.function.Function;
 

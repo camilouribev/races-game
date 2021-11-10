@@ -5,7 +5,7 @@ import com.example.demo.domain.game.GameBuilder;
 import com.example.demo.domain.game.Gamer;
 import com.example.demo.domain.usecase.GameRepository;
 import com.example.demo.infra.documents.GameDocument;
-import com.example.demo.infra.documents.GamerDoc;
+import com.example.demo.infra.documents.GamerDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -36,11 +36,11 @@ public class MongoGameRepository implements GameRepository {
         Optional.ofNullable(document).ifPresent(doc -> {
             builder.withInProgress(doc.getInProgress());
             doc.getGamers().forEach((key, gamerDocument) ->
-                builder.withGamer(Gamer.from(gamerDocument.getId(), gamerDocument.getName()))
+                builder.addGamer(Gamer.from(gamerDocument.getId(), gamerDocument.getName()))
             );
             var winner = doc.getWinner();
             Optional.ofNullable(winner).ifPresent(w ->
-                builder.withGamer(Gamer.from(w.getId(), w.getName()))
+                builder.addGamer(Gamer.from(w.getId(), w.getName()))
             );
         });
 
@@ -54,10 +54,10 @@ public class MongoGameRepository implements GameRepository {
         gameDocument.setId(game.id());
         gameDocument.setInProgress(game.inProgress());
         Optional.ofNullable(game.winner()).ifPresent(w -> {
-            gameDocument.setWinner(new GamerDoc(w.id(), w.name()));
+            gameDocument.setWinner(new GamerDocument(w.id(), w.name()));
         });
         game.gamers().forEach((key, gamer) -> {
-            gameDocument.getGamers().put(key, new GamerDoc(gamer.id(), gamer.name()));
+            gameDocument.getGamers().put(key, new GamerDocument(gamer.id(), gamer.name()));
         });
         mongoTemplate.save(gameDocument, "game");
 

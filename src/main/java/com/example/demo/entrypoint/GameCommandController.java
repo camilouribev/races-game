@@ -1,6 +1,7 @@
 package com.example.demo.entrypoint;
 
 import com.example.demo.domain.WinnerFound;
+import com.example.demo.domain.game.Game;
 import com.example.demo.domain.game.Gamer;
 import com.example.demo.domain.game.command.CreateGame;
 import com.example.demo.domain.game.command.StartGame;
@@ -33,14 +34,14 @@ public class GameCommandController {
 
     @PostMapping("/startGame")
     public String createGame(@RequestBody StartGame startGame){
-        var event = new WinnerFound();
-        var gamer = startGameUseCase.apply(startGame);
-        Optional.ofNullable(gamer).ifPresent((g) -> {
+        var game = startGameUseCase.apply(startGame);
+        Optional.ofNullable(game).map(Game::winner).ifPresent(g -> {
+            var event = new WinnerFound();
             event.setName(g.name());
             event.setId(g.id());
             event.setGameId(startGame.getId());
             this.eventPublisher.publishEvent(event);
         });
-        return Optional.ofNullable(gamer).map(Gamer::name).orElse("No Winner");
+        return Optional.ofNullable(game).map(Game::winner).map(Gamer::name).orElse("No Winner");
     }
 }

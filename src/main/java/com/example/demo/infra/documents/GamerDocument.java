@@ -4,17 +4,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class GamerDoc {
+public class GamerDocument {
     @Id
     private String id;
     private String name;
 
-    public GamerDoc(){
+    public GamerDocument(){
 
     }
 
 
-    public GamerDoc(String id, String name){
+    public GamerDocument(String id, String name){
         this.id = id;
         this.name = name;
     }

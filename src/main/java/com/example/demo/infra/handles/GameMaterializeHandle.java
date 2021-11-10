@@ -3,7 +3,7 @@ package com.example.demo.infra.handles;
 import com.example.demo.domain.WinnerFound;
 
 import com.example.demo.infra.documents.GameDocument;
-import com.example.demo.infra.documents.GamerDoc;
+import com.example.demo.infra.documents.GamerDocument;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -23,7 +23,7 @@ public class GameMaterializeHandle {
     public void handle(WinnerFound winnerFound) {
         Query query = new Query(Criteria.where("_id").is(winnerFound.getGameId()));
         Update update = new Update();
-        update.set("winner", new GamerDoc(winnerFound.getId(), winnerFound.getName()));
+        update.set("winner", new GamerDocument(winnerFound.getId(), winnerFound.getName()));
         update.set("inProgress", false);
 
         mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
