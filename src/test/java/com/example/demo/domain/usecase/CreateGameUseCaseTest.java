@@ -31,20 +31,20 @@ class CreateGameUseCaseTest {
         CreateGame command = new CreateGame();
         command.setId("xxxxxx");
         command.setType("gamer.command");
-        command.setGamers(new HashSet<>());
-        command.getGamers().add("raul");
-        command.getGamers().add("andres");
-        command.getGamers().add("carlos");
-        command.getGamers().add("pedro");
+        command.setPlayers(new HashSet<>());
+        command.getPlayers().add("raul");
+        command.getPlayers().add("andres");
+        command.getPlayers().add("carlos");
+        command.getPlayers().add("pedro");
 
         createGameUseCase.apply(command);
         Mockito.verify(gameRepository).save(captor.capture());
 
         var result = captor.getValue();
-        var gamers = result.gamers().values();
+        var players = result.players().values();
         Assertions.assertEquals("xxxxxx", result.id());
         Assertions.assertEquals(false, result.inProgress());
-        Assertions.assertEquals(4, gamers.size());
+        Assertions.assertEquals(4, players.size());
 
     }
 

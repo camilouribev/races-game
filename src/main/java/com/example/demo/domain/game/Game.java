@@ -6,34 +6,35 @@ import java.util.Map;
 public class Game {
 
     private final  String id;
-    private  Map<String, Gamer> gamers;
+    private  Map<String, Player> players;
     private Boolean inProgress;
-    private Gamer winner;
+    private Player winner;
+    private Integer gamesWon;
 
     public Game(String id) {
         this.id = id;
-        this.gamers = new HashMap<>();
+        this.players = new HashMap<>();
         this.inProgress = false;
     }
 
     public static Game from(String id, GameBuilder factory){
         var game = new Game(id);
         game.winner = factory.getWinner();
-        game.gamers = factory.getGamers();
+        game.players = factory.getPlayers();
         game.inProgress = factory.getInProgress();
         return game;
     }
 
-    public void addGamer(String id, String name){
-        this.gamers.put(id, new Gamer(id, name));
+    public void addPlayer(String id, String name){
+        this.players.put(id, new Player(id, name, gamesWon));
     }
 
     public void startGame(){
         this.inProgress = true;
     }
 
-    public void setWinner(String gamerId){
-       this.winner = this.gamers.get(gamerId);
+    public void setWinner(String playerId){
+       this.winner = this.players.get(playerId);
         this.inProgress = false;
     }
 
@@ -45,11 +46,11 @@ public class Game {
         return inProgress;
     }
 
-    public Gamer winner() {
+    public Player winner() {
         return winner;
     }
 
-    public Map<String, Gamer> gamers() {
-        return gamers;
+    public Map<String, Player> players() {
+        return players;
     }
 }

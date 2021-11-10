@@ -10,9 +10,9 @@ import java.util.Map;
 public class GameDocument {
     @Id
     private  String id;
-    private  Map<String, GamerDocument> gamers;
+    private  Map<String, PlayerDocument> gamers;
     private Boolean inProgress;
-    private GamerDocument winner;
+    private PlayerDocument winner;
 
     public GameDocument(){
         this.gamers = new HashMap<>();
@@ -25,11 +25,11 @@ public class GameDocument {
         this.id = id;
     }
 
-    public Map<String, GamerDocument> getGamers() {
+    public Map<String, PlayerDocument> getPlayers() {
         return gamers;
     }
 
-    public void setGamers(Map<String, GamerDocument> gamers) {
+    public void setPlayers(Map<String, PlayerDocument> gamers) {
         this.gamers = gamers;
     }
 
@@ -41,11 +41,11 @@ public class GameDocument {
         this.inProgress = inProgress;
     }
 
-    public GamerDocument getWinner() {
+    public PlayerDocument getWinner() {
         return winner;
     }
 
-    public void setWinner(GamerDocument winner) {
+    public void setWinner(PlayerDocument winner) {
         this.winner = winner;
     }
 

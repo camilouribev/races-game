@@ -1,7 +1,7 @@
 package com.example.demo.entrypoint;
 
 import com.example.demo.infra.documents.GameDocument;
-import com.example.demo.infra.documents.GamerDocument;
+import com.example.demo.infra.documents.PlayerDocument;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,7 +25,7 @@ public class GameQueryController {
     }
 
     @GetMapping("/game/{id}/winner")
-    public GamerDocument winner(@PathVariable("id") String id){
+    public PlayerDocument winner(@PathVariable("id") String id){
         Query query = new Query(Criteria.where("_id").is(id));
         return Optional
                 .ofNullable(mongoTemplate.findOne(query, GameDocument.class, "game"))

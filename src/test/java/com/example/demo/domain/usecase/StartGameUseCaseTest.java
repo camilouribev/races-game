@@ -2,7 +2,7 @@ package com.example.demo.domain.usecase;
 
 import com.example.demo.domain.game.Game;
 import com.example.demo.domain.game.GameBuilder;
-import com.example.demo.domain.game.Gamer;
+import com.example.demo.domain.game.Player;
 import com.example.demo.domain.game.command.StartGame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,21 +34,21 @@ class StartGameUseCaseTest {
     void startGame(){
         StartGame command = new StartGame();
         command.setId("fff-fff");
-        command.setGamerBet(new HashMap<>());
-        command.getGamerBet().put("1", 1);
-        command.getGamerBet().put("2", 2);
-        command.getGamerBet().put("3", 3);
-        command.getGamerBet().put("4", 4);
-        command.getGamerBet().put("5", 5);
-        command.getGamerBet().put("6", 6);
+        command.setPlayerBet(new HashMap<>());
+        command.getPlayerBet().put("1", 1);
+        command.getPlayerBet().put("2", 2);
+        command.getPlayerBet().put("3", 3);
+        command.getPlayerBet().put("4", 4);
+        command.getPlayerBet().put("5", 5);
+        command.getPlayerBet().put("6", 6);
         Game game = Game.from("fff-fff", GameBuilder
                 .builder()
-                .addGamer(new Gamer("1", "raul"))
-                .addGamer(new Gamer("2", "andres"))
-                .addGamer(new Gamer("3", "gomez"))
-                .addGamer(new Gamer("4", "pedro"))
-                .addGamer(new Gamer("5", "santiago"))
-                .addGamer(new Gamer("6", "felipe"))
+                .addPlayer(new Player("1", "raul", 1))
+                .addPlayer(new Player("2", "andres", 1))
+                .addPlayer(new Player("3", "gomez", 1))
+                .addPlayer(new Player("4", "pedro", 1))
+                .addPlayer(new Player("5", "santiago", 1))
+                .addPlayer(new Player("6", "felipe", 1))
                 .withInProgress(false)
         );
         when(gameRepository.findById("fff-fff")).thenReturn(game);

@@ -1,7 +1,7 @@
 package com.example.demo.domain.usecase;
 
 import com.example.demo.domain.game.Game;
-import com.example.demo.domain.game.Gamer;
+import com.example.demo.domain.game.Player;
 import com.example.demo.domain.game.command.StartGame;
 import org.springframework.stereotype.Component;
 
@@ -25,9 +25,9 @@ public class StartGameUseCase implements Function<StartGame, Game> {
         var game = repository.findById(startGame.getId());
         var value = rand.nextInt(6);
         game.startGame();
-        startGame.getGamerBet().forEach((gamerId, bet) -> {
+        startGame.getPlayerBet().forEach((playerId, bet) -> {
                 if(bet.equals(value)){
-                    game.setWinner(gamerId);
+                    game.setWinner(playerId);
                 }
         });
 

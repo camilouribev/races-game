@@ -2,7 +2,7 @@ package com.example.demo.entrypoint;
 
 import com.example.demo.domain.WinnerFound;
 import com.example.demo.domain.game.Game;
-import com.example.demo.domain.game.Gamer;
+import com.example.demo.domain.game.Player;
 import com.example.demo.domain.game.command.CreateGame;
 import com.example.demo.domain.game.command.StartGame;
 import com.example.demo.domain.usecase.CreateGameUseCase;
@@ -42,6 +42,6 @@ public class GameCommandController {
             event.setGameId(startGame.getId());
             this.eventPublisher.publishEvent(event);
         });
-        return Optional.ofNullable(game).map(Game::winner).map(Gamer::name).orElse("No Winner");
+        return Optional.ofNullable(game).map(Game::winner).map(Player::name).orElse("No Winner");
     }
 }

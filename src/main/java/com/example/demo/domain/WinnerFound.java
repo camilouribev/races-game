@@ -9,6 +9,7 @@ public class WinnerFound implements Serializable {
     private Instant date;
     private String type;
     private String gameId;
+    private Integer gamesWon;
 
     public WinnerFound(){
         this.date = Instant.now();
@@ -53,6 +54,14 @@ public class WinnerFound implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getGamesWon() {
+        return gamesWon;
+    }
+
+    public void setGamesWon(Integer gamesWon) {
+        this.gamesWon = gamesWon;
     }
 
     @Override

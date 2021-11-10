@@ -4,19 +4,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class GamerDocument {
+public class PlayerDocument {
     @Id
     private String id;
     private String name;
+    private Integer gamesWon;
 
-    public GamerDocument(){
+    public PlayerDocument(){
 
     }
 
 
-    public GamerDocument(String id, String name){
+    public PlayerDocument(String id, String name, Integer gamesWon){
         this.id = id;
         this.name = name;
+        this.gamesWon = gamesWon;
     }
 
     public String getId() {
@@ -33,5 +35,13 @@ public class GamerDocument {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getGamesWon() {
+        return gamesWon;
+    }
+
+    public void setGamesWon(Integer gamesWon) {
+        this.gamesWon = gamesWon;
     }
 }

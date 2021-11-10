@@ -15,11 +15,11 @@ public class StartGame implements Serializable {
         this.id = id;
     }
 
-    public Map<String, Integer> getGamerBet() {
+    public Map<String, Integer> getPlayerBet() {
         return gamerBet;
     }
 
-    public void setGamerBet(Map<String, Integer> gamerBet) {
+    public void setPlayerBet(Map<String, Integer> gamerBet) {
         this.gamerBet = gamerBet;
     }
 }

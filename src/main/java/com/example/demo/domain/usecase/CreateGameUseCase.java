@@ -17,7 +17,7 @@ public class CreateGameUseCase implements Function<CreateGame, Game> {
     @Override
     public Game apply(CreateGame createGame) {
         var game = new Game(createGame.getId());
-        createGame.getGamers().forEach(name -> game.addGamer(UUID.randomUUID().toString(), name));
+        createGame.getPlayers().forEach(name -> game.addPlayer(UUID.randomUUID().toString(), name));
         return repository.save(game);
     }
 }

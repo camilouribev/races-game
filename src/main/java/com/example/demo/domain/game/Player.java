@@ -2,17 +2,19 @@ package com.example.demo.domain.game;
 
 import java.util.Objects;
 
-public class Gamer {
+public class Player {
     private String id;
     private String name;
+    private Integer gamesWon;
 
-    public Gamer(String id, String name) {
+    public Player(String id, String name, Integer gamesWon) {
         this.id = id;
         this.name = name;
+        this.gamesWon = gamesWon;
     }
 
-    public static Gamer from(String id, String name){
-        return new Gamer(id, name);
+    public static Player from(String id, String name, Integer gamesWon){
+        return new Player(id, name, gamesWon);
     }
 
     public String name() {
@@ -23,16 +25,20 @@ public class Gamer {
         return id;
     }
 
+    public Integer gamesWon() {
+        return gamesWon;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Gamer gamer = (Gamer) o;
-        return Objects.equals(id, gamer.id);
+        Player player = (Player) o;
+        return Objects.equals(id, player.id) && Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name);
     }
 }

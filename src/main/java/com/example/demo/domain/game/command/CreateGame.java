@@ -25,11 +25,11 @@ public class CreateGame implements Serializable {
         this.type = type;
     }
 
-    public Set<String> getGamers() {
+    public Set<String> getPlayers() {
         return gamers;
     }
 
-    public void setGamers(Set<String> gamers) {
+    public void setPlayers(Set<String> gamers) {
         this.gamers = gamers;
     }
 }

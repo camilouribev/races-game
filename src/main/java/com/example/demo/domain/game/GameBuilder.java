@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameBuilder {
-    private final Map<String, Gamer> gamers;
+    private final Map<String, Player> players;
     private Boolean inProgress;
-    private Gamer winner;
+    private Player winner;
 
     public GameBuilder(){
-        this.gamers = new HashMap<>();
+        this.players = new HashMap<>();
         this.inProgress = false;
     }
 
@@ -17,7 +17,7 @@ public class GameBuilder {
         return new GameBuilder();
     }
 
-    public GameBuilder withWinner(Gamer winner){
+    public GameBuilder withWinner(Player winner){
         this.winner = winner;
         return this;
     }
@@ -29,8 +29,8 @@ public class GameBuilder {
     }
 
 
-    public GameBuilder addGamer(Gamer gamer){
-        gamers.put(gamer.id(), gamer);
+    public GameBuilder addPlayer(Player player){
+        players.put(player.id(), player);
         return this;
     }
 
@@ -38,12 +38,12 @@ public class GameBuilder {
         return inProgress;
     }
 
-    public Gamer getWinner() {
+    public Player getWinner() {
         return winner;
     }
 
-    public Map<String, Gamer> getGamers() {
-        return gamers;
+    public Map<String, Player> getPlayers() {
+        return players;
     }
 
 }
