@@ -52,7 +52,7 @@ Proyecto demo en donde se una una separación de resposabilidades usando los con
 }
 </pre>
 
-## Query para determinar el ganador del juego
+## 3. Query para determinar el ganador del juego
 * GET http://localhost:8080/game/fffff-ggg-jjjjj/winner
 * RESULT:
 <pre>
@@ -63,7 +63,7 @@ Proyecto demo en donde se una una separación de resposabilidades usando los con
 
 </pre>
 
-## Comando para iniciar el guejo con la apustar por cada jugador
+## 4. Comando para iniciar el guejo con la apustar por cada jugador
 
 * POST http://localhost:8080/startGame
 * BODY:

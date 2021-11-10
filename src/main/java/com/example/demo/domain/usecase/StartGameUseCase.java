@@ -23,6 +23,7 @@ public class StartGameUseCase implements Function<StartGame, Gamer> {
     public Gamer apply(StartGame startGame) {
         var game = repository.findById(startGame.getId());
         var value = rand.nextInt(6);
+        game.startGame();
         startGame.getGamerBet().forEach((gamerId, bet) -> {
                 if(bet.equals(value)){
                     game.setWinner(gamerId);
