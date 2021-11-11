@@ -1,8 +1,21 @@
 .Board-container{
   display: grid;
-  grid-template-columns: repeat(8,100px);
-  grid-template-rows: repeat(8,100px);
-  width: 800px;
-  height: 800px;
-  background-color: #83c240
+  grid-template-areas: "carril1" "carril2" "carril3";
+  row-gap: 5px;
+  width: 1000px;
+  height: 300px;
+  background-color: green;
+  border: 10px solid green;
+}
+.Carril{
+   background: linear-gradient(90deg, rgba(253,187,45,1) 0%, rgba(45,240,74,1) 83%);
+   display: grid;
+   grid-template-columns: [y1]80% [y2]10% 10%;
+   
+}
+.meta-container{ 
+  background-color: black;
+}
+.meta{
+  width: 100%;
 }

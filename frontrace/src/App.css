@@ -12,12 +12,12 @@
   height: 90vh;
   border: 2px solid red;
 }
-.player{
-  width: 10%;
+button{
+  width: 20%;
+  height: 50px;
+  font-size: 26px;
+  border-radius: 8px;
 }
-.img-dice{
-  width: 10%;
-}
-.img-play{
-  width: 10%;
+.img-icon{
+  width: 8%;
 }
