@@ -68,6 +68,7 @@ public class GameCommandController {
             event.setGameId(moveCar.getGameId());
             event.setPlayerId(moveCar.getPlayerId());
             event.setDistanceMoved(movedPlayer[0].carDrivenDistance());
+            event.setPlayers(game.players());
 
             this.eventPublisher.publishEvent(event);
         });

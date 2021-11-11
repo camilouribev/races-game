@@ -20,9 +20,7 @@ public class StartGameUseCase implements Function<StartGame, Game> {
     @Override
     public Game apply(StartGame startGame) {
         var game = repository.findById(startGame.getId());
-
         game.startGame(startGame.getTrackLength());
-
         return  repository.save(game);
     }
 }
