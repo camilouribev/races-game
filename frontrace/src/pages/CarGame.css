@@ -1,0 +1,23 @@
+.Title{
+  display: flex;
+  justify-content: center;
+}
+.Buttons-container{
+  display: flex;
+  justify-content: center;
+}
+.TrackBoard-container{
+  display: grid;
+  place-content: center;
+  height: 90vh;
+  border: 2px solid red;
+}
+button{
+  width: 20%;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.img-icon{
+  width: 8%;
+}
