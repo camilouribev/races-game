@@ -15,7 +15,6 @@
    
 }
 .meta-container{ 
-  /* background-color: black; */
   grid-column: 9/10;
   width: 60%;
   background-color: white; 
@@ -28,7 +27,10 @@
 .meta{
   width: 100%;
 }
+.car-container{
+  grid-column: 8/9; 
+  /* Colocar un if, que cuando llegue a penultimo/ultima columna se quita el "meta-container" y se pone el background de meta a "car-container" */
+}
 .car-icon{
-  width: 80px;
-  grid-column: 7/8;
+  width: 90px;
 }
