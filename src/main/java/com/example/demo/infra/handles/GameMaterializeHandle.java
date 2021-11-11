@@ -1,8 +1,9 @@
 package com.example.demo.infra.handles;
 
-import com.example.demo.domain.CarMoved;
-import com.example.demo.domain.RaceStarted;
-import com.example.demo.domain.WinnerFound;
+import com.example.demo.domain.game.events.CarMoved;
+import com.example.demo.domain.game.events.GameFinished;
+import com.example.demo.domain.game.events.RaceStarted;
+import com.example.demo.domain.game.events.WinnerFound;
 
 import com.example.demo.infra.documents.GameDocument;
 import com.example.demo.infra.documents.PlayerDocument;
@@ -46,12 +47,18 @@ public class GameMaterializeHandle {
 
     @EventListener
     public void handle(CarMoved carMoved) {
-        System.out.println(carMoved.getGameId()+ " we're in event listener for a car moving");
         Query query = new Query(Criteria.where("_id").is(carMoved.getGameId()));
         Update update = new Update();
-        update.set("inProgress", true);
         update.set("players", carMoved.getPlayers());
 
+        mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
+    }
+
+    @EventListener
+    public void handle(GameFinished gameFinished) {
+        Query query = new Query(Criteria.where("_id").is(gameFinished.getGameId()));
+        Update update = new Update();
+        update.set("players", gameFinished.getPlayers());
 
         mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
     }

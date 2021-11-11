@@ -23,11 +23,10 @@ public class MoveCarUseCase implements Function<MoveCar, Game> {
     public Game apply(MoveCar moveCar) {
         var game = repository.findById(moveCar.getGameId());
         game.players().forEach((playerId, player)->{
-            if(playerId.equals(moveCar.getPlayerId())){
-                player.move(rand.nextInt(6)*100);
+            if(playerId.equals(moveCar.getPlayerId()) && player.carDrivenDistance()< game.trackLength() && game.inProgress()){
+                player.move(rand.nextInt(7)*100);
             }
         });
-        System.out.println("game.trackLength() = " + game.trackLength());
         return repository.save(game) ;
     }
 }

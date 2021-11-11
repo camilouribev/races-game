@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.game.events;
 
 import java.io.Serializable;
 import java.time.Instant;
