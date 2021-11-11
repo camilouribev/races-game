@@ -27,16 +27,16 @@ public class StartGameUseCase implements Function<StartGame, Game> {
         game.startGame();
         System.out.println("value = " + value);
 
-        System.out.println("is in progress = " + game.inProgress());
+        System.out.println("bet = " + startGame.getPlayerBet());
 
         startGame.getPlayerBet().forEach((playerId, bet) -> {
-            System.out.println("bet = " + bet);
+
                 if(bet.equals(value)){
-                    
+
                     game.setWinner(playerId);
                 }
         });
 
-        return repository.save(game);
+        return game;
     }
 }
