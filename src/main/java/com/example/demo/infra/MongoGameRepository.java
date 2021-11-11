@@ -34,13 +34,15 @@ public class MongoGameRepository implements GameRepository {
     private GameBuilder converterToBuilder(GameDocument document) {
         var builder = new GameBuilder();
         Optional.ofNullable(document).ifPresent(doc -> {
+            builder.withTrackLength(doc.getTrackLength());
+
             builder.withInProgress(doc.getInProgress());
             doc.getPlayers().forEach((key, gamerDocument) ->
-                builder.addPlayer(Player.from(gamerDocument.getId(), gamerDocument.getName()))
+                builder.addPlayer(Player.from(gamerDocument.getId(), gamerDocument.getName(), gamerDocument.getCarDrivenDistance()))
             );
             var winner = doc.getWinner();
             Optional.ofNullable(winner).ifPresent(w ->
-                builder.addPlayer(Player.from(w.getId(), w.getName()))
+                builder.addPlayer(Player.from(w.getId(), w.getName(), w.getCarDrivenDistance()))
             );
         });
 

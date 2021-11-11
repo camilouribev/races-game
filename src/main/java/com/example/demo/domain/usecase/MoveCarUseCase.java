@@ -27,7 +27,7 @@ public class MoveCarUseCase implements Function<MoveCar, Game> {
                 player.move(rand.nextInt(6)*100);
             }
         });
-
+        System.out.println("game.trackLength() = " + game.trackLength());
         return repository.save(game) ;
     }
 }
