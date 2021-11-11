@@ -1,5 +1,6 @@
 package com.example.demo.infra.documents;
 
+import com.example.demo.domain.game.Player;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,12 +11,14 @@ import java.util.Map;
 public class GameDocument {
     @Id
     private  String id;
-    private  Map<String, PlayerDocument> gamers;
+    private  Map<String, PlayerDocument> players;
     private Boolean inProgress;
     private PlayerDocument winner;
+    private Player secondPlace;
+    private Player thirdPlace;
 
     public GameDocument(){
-        this.gamers = new HashMap<>();
+        this.players = new HashMap<>();
     }
     public String getId() {
         return id;
@@ -26,11 +29,11 @@ public class GameDocument {
     }
 
     public Map<String, PlayerDocument> getPlayers() {
-        return gamers;
+        return players;
     }
 
-    public void setPlayers(Map<String, PlayerDocument> gamers) {
-        this.gamers = gamers;
+    public void setPlayers(Map<String, PlayerDocument> players) {
+        this.players = players;
     }
 
     public Boolean getInProgress() {
@@ -49,4 +52,19 @@ public class GameDocument {
         this.winner = winner;
     }
 
+    public Player getSecondPlace() {
+        return secondPlace;
+    }
+
+    public void setSecondPlace(Player secondPlace) {
+        this.secondPlace = secondPlace;
+    }
+
+    public Player getThirdPlace() {
+        return thirdPlace;
+    }
+
+    public void setThirdPlace(Player thirdPlace) {
+        this.thirdPlace = thirdPlace;
+    }
 }

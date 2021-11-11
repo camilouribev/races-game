@@ -23,7 +23,7 @@ public class GameMaterializeHandle {
     public void handle(WinnerFound winnerFound) {
         Query query = new Query(Criteria.where("_id").is(winnerFound.getGameId()));
         Update update = new Update();
-        update.set("winner", new PlayerDocument(winnerFound.getId(), winnerFound.getName(), winnerFound.getGamesWon()));
+        update.set("winner", new PlayerDocument(winnerFound.getId(), winnerFound.getName(), winnerFound.getCarDrivenDistance()));
         update.set("inProgress", false);
 
         mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();

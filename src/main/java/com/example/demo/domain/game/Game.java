@@ -9,7 +9,8 @@ public class Game {
     private  Map<String, Player> players;
     private Boolean inProgress;
     private Player winner;
-    private Integer gamesWon;
+    private Player secondPlace;
+    private Player thirdPlace;
 
     public Game(String id) {
         this.id = id;
@@ -22,11 +23,14 @@ public class Game {
         game.winner = factory.getWinner();
         game.players = factory.getPlayers();
         game.inProgress = factory.getInProgress();
+        game.secondPlace = factory.getSecondPlace();
+        game.thirdPlace = factory.getThirdPlace();
+
         return game;
     }
 
     public void addPlayer(String id, String name){
-        this.players.put(id, new Player(id, name, gamesWon));
+        this.players.put(id, new Player(id, name));
     }
 
     public void startGame(){
@@ -53,4 +57,5 @@ public class Game {
     public Map<String, Player> players() {
         return players;
     }
+
 }

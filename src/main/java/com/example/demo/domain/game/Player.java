@@ -5,16 +5,17 @@ import java.util.Objects;
 public class Player {
     private String id;
     private String name;
-    private Integer gamesWon;
+    private Integer carDrivenDistance;
 
-    public Player(String id, String name, Integer gamesWon) {
+    public Player(String id, String name) {
         this.id = id;
         this.name = name;
-        this.gamesWon = gamesWon;
+        this.carDrivenDistance = 0;
     }
 
-    public static Player from(String id, String name, Integer gamesWon){
-        return new Player(id, name, gamesWon);
+
+    public static Player from(String id, String name){
+        return new Player(id, name);
     }
 
     public String name() {
@@ -25,8 +26,8 @@ public class Player {
         return id;
     }
 
-    public Integer gamesWon() {
-        return gamesWon;
+    public Integer carDrivenDistance() {
+        return carDrivenDistance;
     }
 
     @Override
@@ -34,11 +35,11 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(id, player.id) && Objects.equals(name, player.name);
+        return Objects.equals(id, player.id) && Objects.equals(name, player.name) && Objects.equals(carDrivenDistance, player.carDrivenDistance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, carDrivenDistance);
     }
 }

@@ -36,11 +36,11 @@ public class MongoGameRepository implements GameRepository {
         Optional.ofNullable(document).ifPresent(doc -> {
             builder.withInProgress(doc.getInProgress());
             doc.getPlayers().forEach((key, gamerDocument) ->
-                builder.addPlayer(Player.from(gamerDocument.getId(), gamerDocument.getName(), gamerDocument.getGamesWon()))
+                builder.addPlayer(Player.from(gamerDocument.getId(), gamerDocument.getName()))
             );
             var winner = doc.getWinner();
             Optional.ofNullable(winner).ifPresent(w ->
-                builder.addPlayer(Player.from(w.getId(), w.getName(), w.getGamesWon()))
+                builder.addPlayer(Player.from(w.getId(), w.getName()))
             );
         });
 
@@ -54,10 +54,10 @@ public class MongoGameRepository implements GameRepository {
         gameDocument.setId(game.id());
         gameDocument.setInProgress(game.inProgress());
         Optional.ofNullable(game.winner()).ifPresent(w -> {
-            gameDocument.setWinner(new PlayerDocument(w.id(), w.name(), w.gamesWon()));
+            gameDocument.setWinner(new PlayerDocument(w.id(), w.name(), w.carDrivenDistance()));
         });
         game.players().forEach((key, gamer) -> {
-            gameDocument.getPlayers().put(key, new PlayerDocument(gamer.id(), gamer.name(), gamer.gamesWon()));
+            gameDocument.getPlayers().put(key, new PlayerDocument(gamer.id(), gamer.name(), gamer.carDrivenDistance()));
         });
         mongoTemplate.save(gameDocument, "game");
 

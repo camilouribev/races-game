@@ -8,18 +8,18 @@ public class PlayerDocument {
     @Id
     private String id;
     private String name;
-    private Integer gamesWon;
+    private Integer carDrivenDistance;
 
     public PlayerDocument(){
 
     }
 
-
-    public PlayerDocument(String id, String name, Integer gamesWon){
+    public PlayerDocument(String id, String name, Integer carDrivenDistance){
         this.id = id;
         this.name = name;
-        this.gamesWon = gamesWon;
+        this.carDrivenDistance = carDrivenDistance;
     }
+
 
     public String getId() {
         return id;
@@ -37,11 +37,11 @@ public class PlayerDocument {
         this.name = name;
     }
 
-    public Integer getGamesWon() {
-        return gamesWon;
+    public Integer getCarDrivenDistance() {
+        return carDrivenDistance;
     }
 
-    public void setGamesWon(Integer gamesWon) {
-        this.gamesWon = gamesWon;
+    public void setCarDrivenDistance(Integer carDrivenDistance) {
+        this.carDrivenDistance = carDrivenDistance;
     }
 }

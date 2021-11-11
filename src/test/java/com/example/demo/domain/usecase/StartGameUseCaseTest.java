@@ -43,12 +43,12 @@ class StartGameUseCaseTest {
         command.getPlayerBet().put("6", 6);
         Game game = Game.from("fff-fff", GameBuilder
                 .builder()
-                .addPlayer(new Player("1", "raul", 1))
-                .addPlayer(new Player("2", "andres", 1))
-                .addPlayer(new Player("3", "gomez", 1))
-                .addPlayer(new Player("4", "pedro", 1))
-                .addPlayer(new Player("5", "santiago", 1))
-                .addPlayer(new Player("6", "felipe", 1))
+                .addPlayer(new Player("1", "raul"))
+                .addPlayer(new Player("2", "andres"))
+                .addPlayer(new Player("3", "gomez"))
+                .addPlayer(new Player("4", "pedro"))
+                .addPlayer(new Player("5", "santiago"))
+                .addPlayer(new Player("6", "felipe"))
                 .withInProgress(false)
         );
         when(gameRepository.findById("fff-fff")).thenReturn(game);
