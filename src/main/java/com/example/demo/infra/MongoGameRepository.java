@@ -53,6 +53,7 @@ public class MongoGameRepository implements GameRepository {
 
         gameDocument.setId(game.id());
         gameDocument.setInProgress(game.inProgress());
+        gameDocument.setTrackLength(game.trackLength());
         Optional.ofNullable(game.winner()).ifPresent(w -> {
             gameDocument.setWinner(new PlayerDocument(w.id(), w.name(), w.carDrivenDistance()));
         });

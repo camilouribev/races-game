@@ -16,12 +16,21 @@ public class GameDocument {
     private PlayerDocument winner;
     private Player secondPlace;
     private Player thirdPlace;
+    private Integer trackLength;
 
     public GameDocument(){
         this.players = new HashMap<>();
     }
     public String getId() {
         return id;
+    }
+
+    public Integer getTrackLength() {
+        return trackLength;
+    }
+
+    public void setTrackLength(Integer trackLength) {
+        this.trackLength = trackLength;
     }
 
     public void setId(String id) {

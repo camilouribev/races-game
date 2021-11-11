@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class StartGame implements Serializable {
     private String id;
-    private Map<String, Integer> playerBet;
+    private Integer trackLength;
 
     public String getId() {
         return id;
@@ -15,11 +15,12 @@ public class StartGame implements Serializable {
         this.id = id;
     }
 
-    public Map<String, Integer> getPlayerBet() {
-        return playerBet;
+
+    public Integer getTrackLength() {
+        return trackLength;
     }
 
-    public void setPlayerBet(Map<String, Integer> playerBet) {
-        this.playerBet = playerBet;
+    public void setTrackLength(Integer trackLength) {
+        this.trackLength = trackLength;
     }
 }

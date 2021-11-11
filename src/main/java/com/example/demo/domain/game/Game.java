@@ -8,12 +8,14 @@ public class Game {
     private final  String id;
     private  Map<String, Player> players;
     private Boolean inProgress;
+    private Integer trackLength;
     private Player winner;
     private Player secondPlace;
     private Player thirdPlace;
 
     public Game(String id) {
         this.id = id;
+        this.trackLength=100;
         this.players = new HashMap<>();
         this.inProgress = false;
     }
@@ -22,6 +24,7 @@ public class Game {
         var game = new Game(id);
         game.winner = factory.getWinner();
         game.players = factory.getPlayers();
+        game.trackLength = factory.getTrackLength();
         game.inProgress = factory.getInProgress();
         game.secondPlace = factory.getSecondPlace();
         game.thirdPlace = factory.getThirdPlace();
@@ -33,13 +36,18 @@ public class Game {
         this.players.put(id, new Player(id, name));
     }
 
-    public void startGame(){
+    public void startGame(Integer kilometers){
         this.inProgress = true;
+        this.trackLength = kilometers;
     }
 
     public void setWinner(String playerId){
        this.winner = this.players.get(playerId);
         this.inProgress = false;
+    }
+
+    public void setTrackLength(Integer trackLength) {
+        this.trackLength = trackLength;
     }
 
     public String id() {
@@ -52,6 +60,10 @@ public class Game {
 
     public Player winner() {
         return winner;
+    }
+
+    public Integer trackLength() {
+        return trackLength;
     }
 
     public Map<String, Player> players() {

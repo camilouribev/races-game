@@ -22,21 +22,9 @@ public class StartGameUseCase implements Function<StartGame, Game> {
     @Override
     public Game apply(StartGame startGame) {
         var game = repository.findById(startGame.getId());
-        System.out.println("game = " + game);
-        var value = rand.nextInt(6);
-        game.startGame();
-        System.out.println("value = " + value);
 
-        System.out.println("bet = " + startGame.getPlayerBet());
+        game.startGame(startGame.getTrackLength());
 
-        startGame.getPlayerBet().forEach((playerId, bet) -> {
-
-                if(bet.equals(value)){
-
-                    game.setWinner(playerId);
-                }
-        });
-
-        return game;
+        return  repository.save(game);
     }
 }
