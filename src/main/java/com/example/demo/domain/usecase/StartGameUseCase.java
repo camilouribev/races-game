@@ -29,8 +29,10 @@ public class StartGameUseCase implements Function<StartGame, Game> {
 
         System.out.println("is in progress = " + game.inProgress());
         System.out.println("getPlayerBet: " + startGame.getPlayerBet());
+        System.out.println("bet = " + startGame.getPlayerBet());
+
         startGame.getPlayerBet().forEach((playerId, bet) -> {
-            System.out.println("bet = " + bet);
+
                 if(bet.equals(value)){
                     game.setWinner(playerId);
                     repository.save(game);
@@ -38,6 +40,6 @@ public class StartGameUseCase implements Function<StartGame, Game> {
             System.out.println(game.winner());
         });
 
-        return repository.save(game);
+        return game;
     }
 }
