@@ -41,6 +41,10 @@ public class Game {
         this.trackLength = kilometers;
     }
 
+    public void endGame(){
+        this.inProgress = false;
+    }
+
     public void setWinner(String playerId){
        this.winner = this.players.get(playerId);
         this.inProgress = false;

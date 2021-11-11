@@ -30,6 +30,8 @@ public class Player {
         return carDrivenDistance;
     }
 
+    public void move(Integer kilometers){ this.carDrivenDistance += kilometers;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
