@@ -6,6 +6,7 @@ import java.util.Map;
 public class GameBuilder {
     private final Map<String, Player> players;
     private Boolean inProgress;
+    private Integer trackLength;
     private Player winner;
     private Player secondPlace;
     private Player thirdPlace;
@@ -23,6 +24,12 @@ public class GameBuilder {
         this.winner = winner;
         return this;
     }
+
+    public GameBuilder withTrackLength(Integer length){
+        this.trackLength = length;
+        return this;
+    }
+
 
     public GameBuilder withSecondPlace(Player secondPlace){
         this.secondPlace = secondPlace;
@@ -62,5 +69,9 @@ public class GameBuilder {
 
     public Player getThirdPlace() {
         return thirdPlace;
+    }
+
+    public Integer getTrackLength() {
+        return trackLength;
     }
 }
