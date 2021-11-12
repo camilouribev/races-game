@@ -1,23 +1,40 @@
-package com.example.demo.domain;
+package com.example.demo.domain.game.events;
 
 import com.example.demo.domain.game.Player;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Map;
-import java.util.Set;
 
-public class CarMoved implements Serializable {
+public class GameFinished implements Serializable {
     private String gameId;
     private String playerId;
+    private String name;
     private String type;
-    private Integer distanceMoved;
     private Instant date;
+    private Integer distanceMoved;
     private Map<String, Player> players;
 
-    public CarMoved() {
-        this.type = "game.carmoved";
+    public GameFinished(){
+        this.type = "game.gamefinished";
         this.date = Instant.now();
+
+    }
+
+    public Integer getDistanceMoved() {
+        return distanceMoved;
+    }
+
+    public void setDistanceMoved(Integer distanceMoved) {
+        this.distanceMoved = distanceMoved;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGameId() {
@@ -44,14 +61,6 @@ public class CarMoved implements Serializable {
         this.type = type;
     }
 
-    public Integer getDistanceMoved() {
-        return distanceMoved;
-    }
-
-    public void setDistanceMoved(Integer distanceMoved) {
-        this.distanceMoved = distanceMoved;
-    }
-
     public Instant getDate() {
         return date;
     }
@@ -70,11 +79,10 @@ public class CarMoved implements Serializable {
 
     @Override
     public String toString() {
-        return "CarMoved{" +
+        return "GameFinished{" +
                 "gameId='" + gameId + '\'' +
                 ", playerId='" + playerId + '\'' +
                 ", type='" + type + '\'' +
-                ", distanceMoved=" + distanceMoved +
                 ", date=" + date +
                 ", players=" + players +
                 '}';

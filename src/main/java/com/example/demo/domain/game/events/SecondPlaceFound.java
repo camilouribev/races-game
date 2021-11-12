@@ -1,18 +1,19 @@
-package com.example.demo.domain;
+package com.example.demo.domain.game.events;
 
 import java.io.Serializable;
 import java.time.Instant;
 
-public class RaceStarted implements Serializable {
+public class SecondPlaceFound implements Serializable {
     private String name;
+    private String id;
     private Instant date;
     private String type;
     private String gameId;
-    private Integer trackLength;
+    private Integer carDrivenDistance;
 
-    public RaceStarted() {
+    public SecondPlaceFound() {
         this.date = Instant.now();
-        this.type = "game.racestarted";
+        this.type = "game.secondplacefound";
     }
 
     public String getName() {
@@ -21,6 +22,14 @@ public class RaceStarted implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Instant getDate() {
@@ -47,22 +56,23 @@ public class RaceStarted implements Serializable {
         this.gameId = gameId;
     }
 
-    public Integer getTrackLength() {
-        return trackLength;
+    public Integer getCarDrivenDistance() {
+        return carDrivenDistance;
     }
 
-    public void setTrackLength(Integer trackLength) {
-        this.trackLength = trackLength;
+    public void setCarDrivenDistance(Integer carDrivenDistance) {
+        this.carDrivenDistance = carDrivenDistance;
     }
 
     @Override
     public String toString() {
-        return "RaceCreated{" +
+        return "SecondPlaceFound{" +
                 "name='" + name + '\'' +
+                ", id='" + id + '\'' +
                 ", date=" + date +
                 ", type='" + type + '\'' +
                 ", gameId='" + gameId + '\'' +
-                ", trackLength=" + trackLength +
+                ", carDrivenDistance=" + carDrivenDistance +
                 '}';
     }
 }

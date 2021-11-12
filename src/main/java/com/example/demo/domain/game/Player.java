@@ -11,11 +11,17 @@ public class Player {
         this.id = id;
         this.name = name;
         this.carDrivenDistance = 0;
+
+    }
+    public Player(String id, String name, Integer carDrivenDistance) {
+        this.id = id;
+        this.name = name;
+        this.carDrivenDistance = carDrivenDistance;
     }
 
 
-    public static Player from(String id, String name){
-        return new Player(id, name);
+    public static Player from(String id, String name, Integer carDrivenDistance){
+        return new Player(id, name, carDrivenDistance);
     }
 
     public String name() {

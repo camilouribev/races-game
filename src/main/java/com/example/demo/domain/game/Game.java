@@ -47,7 +47,6 @@ public class Game {
 
     public void setWinner(String playerId){
        this.winner = this.players.get(playerId);
-        this.inProgress = false;
     }
 
     public void setTrackLength(Integer trackLength) {
@@ -74,4 +73,19 @@ public class Game {
         return players;
     }
 
+    public Player secondPlace() {
+        return secondPlace;
+    }
+
+    public void setSecondPlace(String secondPlace) {
+        this.secondPlace = this.players.get(secondPlace);
+    }
+
+    public Player thirdPlace() {
+        return thirdPlace;
+    }
+
+    public void setThirdPlace(String thirdPlace) {
+        this.thirdPlace = this.players.get(thirdPlace);
+    }
 }
