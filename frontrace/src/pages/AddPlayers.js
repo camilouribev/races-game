@@ -9,8 +9,9 @@ import "./AddPlayers.css";
 export default function AddPlayers() {
   const [fields, setField] = useState([]);
 
-  const [playersName, setPlayersName] = useState({ });
+  const [playersName, setPlayersName] = useState([]);
   const [trackLength, setTrackLength] = useState();
+  const [currentPlayerName, setCurrentPlayerName] = useState("");
 
   const handleOnChange = (e) => {
     let auxField = [];
@@ -30,13 +31,18 @@ export default function AddPlayers() {
     // dispatch(postQuestion(data));
   };
 
-  const handlePlayersInput = (e, index) => {
-    let event = e.target.value
-    setPlayersName({ ...playersName, event });
-    console.log("playersName: " + playersName);
+  const handlePlayersInput = (e) => {
+    console.log(e.key);
+    if (e.key === "Enter") {
+      let array = [...playersName];
+      array.push(currentPlayerName);
+      setPlayersName(array);
+      console.log(array);
+      console.log("playersName:");
+    }
   };
+  console.log("playersName: " + playersName);
 
-  
   return (
     <div className="addPlayers-container">
       <form onSubmit={onSubmit}>
@@ -75,9 +81,10 @@ export default function AddPlayers() {
           {fields.map((index) => {
             return (
               <input
-                onChange={(event) => handlePlayersInput(event, index)}
+                onChange={(e) => setCurrentPlayerName(e.target.value)}
                 className="addplayers-input"
-                name={index}
+                // name={index}
+                onKeyUp={handlePlayersInput}
                 key={index}
                 placeholder="Apodo jugador"
               ></input>
