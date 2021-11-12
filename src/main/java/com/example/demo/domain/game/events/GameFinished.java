@@ -9,14 +9,32 @@ import java.util.Map;
 public class GameFinished implements Serializable {
     private String gameId;
     private String playerId;
+    private String name;
     private String type;
     private Instant date;
+    private Integer distanceMoved;
     private Map<String, Player> players;
 
     public GameFinished(){
         this.type = "game.gamefinished";
         this.date = Instant.now();
 
+    }
+
+    public Integer getDistanceMoved() {
+        return distanceMoved;
+    }
+
+    public void setDistanceMoved(Integer distanceMoved) {
+        this.distanceMoved = distanceMoved;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGameId() {

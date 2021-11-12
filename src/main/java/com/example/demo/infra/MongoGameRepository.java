@@ -59,6 +59,13 @@ public class MongoGameRepository implements GameRepository {
         Optional.ofNullable(game.winner()).ifPresent(w -> {
             gameDocument.setWinner(new PlayerDocument(w.id(), w.name(), w.carDrivenDistance()));
         });
+        Optional.ofNullable(game.secondPlace()).ifPresent(w -> {
+            gameDocument.setSecondPlace(new PlayerDocument(w.id(), w.name(), w.carDrivenDistance()));
+        });
+        Optional.ofNullable(game.thirdPlace()).ifPresent(w -> {
+            gameDocument.setThirdPlace(new PlayerDocument(w.id(), w.name(), w.carDrivenDistance()));
+        });
+
         game.players().forEach((key, gamer) -> {
             gameDocument.getPlayers().put(key, new PlayerDocument(gamer.id(), gamer.name(), gamer.carDrivenDistance()));
         });

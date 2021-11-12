@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class FinishGameUseCase implements Function<MoveCar, Game> {
+public class FinishSecondUseCase implements Function<MoveCar, Game> {
     private final GameRepository repository;
 
-    public FinishGameUseCase(GameRepository repository) {
+    public FinishSecondUseCase(GameRepository repository) {
         this.repository = repository;
     }
+
 
     @Override
     public Game apply(MoveCar moveCar) {
 
         var game = repository.findById(moveCar.getGameId());
-        game.endGame();
-        game.setThirdPlace(moveCar.getPlayerId());
+        game.setSecondPlace(moveCar.getPlayerId());
 
         return  repository.save(game);
     }

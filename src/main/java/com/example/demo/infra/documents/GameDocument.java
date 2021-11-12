@@ -1,6 +1,5 @@
 package com.example.demo.infra.documents;
 
-import com.example.demo.domain.game.Player;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,8 +13,8 @@ public class GameDocument {
     private  Map<String, PlayerDocument> players;
     private Boolean inProgress;
     private PlayerDocument winner;
-    private Player secondPlace;
-    private Player thirdPlace;
+    private PlayerDocument secondPlace;
+    private PlayerDocument thirdPlace;
     private Integer trackLength;
 
     public GameDocument(){
@@ -61,19 +60,19 @@ public class GameDocument {
         this.winner = winner;
     }
 
-    public Player getSecondPlace() {
+    public PlayerDocument getSecondPlace() {
         return secondPlace;
     }
 
-    public void setSecondPlace(Player secondPlace) {
+    public void setSecondPlace(PlayerDocument secondPlace) {
         this.secondPlace = secondPlace;
     }
 
-    public Player getThirdPlace() {
+    public PlayerDocument getThirdPlace() {
         return thirdPlace;
     }
 
-    public void setThirdPlace(Player thirdPlace) {
+    public void setThirdPlace(PlayerDocument thirdPlace) {
         this.thirdPlace = thirdPlace;
     }
 }

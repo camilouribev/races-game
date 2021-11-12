@@ -77,15 +77,15 @@ public class Game {
         return secondPlace;
     }
 
-    public void setSecondPlace(Player secondPlace) {
-        this.secondPlace = secondPlace;
+    public void setSecondPlace(String secondPlace) {
+        this.secondPlace = this.players.get(secondPlace);
     }
 
     public Player thirdPlace() {
         return thirdPlace;
     }
 
-    public void setThirdPlace(Player thirdPlace) {
-        this.thirdPlace = thirdPlace;
+    public void setThirdPlace(String thirdPlace) {
+        this.thirdPlace = this.players.get(thirdPlace);
     }
 }
