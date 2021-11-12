@@ -8,34 +8,24 @@ import add from "../images/add.png";
 import "./AddPlayers.css";
 
 export default function AddPlayers() {
-  const [fields, setField] = useState([]);
-
   const [playersName, setPlayersName] = useState([]);
   const [trackLength, setTrackLength] = useState();
   const [currentPlayerName, setCurrentPlayerName] = useState("");
-  const [rows, setRows] = useState([]);
-
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const data = { ...playersName, ...trackLength };
-    console.log("trackLength: " + trackLength);
-    console.log("playersName: " + playersName);
 
     // dispatch(postQuestion(data));
   };
 
   const handlePlayersInput = (e) => {
-      let array = [...playersName];
-      array.push(currentPlayerName);
-      setPlayersName(array);
-      console.log(array);
-      console.log("playersName:");
-      setRows([...playersName])
+    let array = [...playersName];
+    array.push(currentPlayerName);
+    setPlayersName(array);
   };
-  console.log("playersName: " + playersName);
-  console.log("");
+  console.log(playersName);
 
   return (
     <div className="addPlayers-container">
@@ -71,22 +61,20 @@ export default function AddPlayers() {
               <button
                 className="btn-add"
                 onClick={handlePlayersInput}
+                disabled={currentPlayerName === ""}
               >
                 <img className="btn-img" src={add} alt="add"></img>
               </button>
             </div>
-            {rows.map((index) => (
-              <div>
+            {playersName.map((value, index) => (
+              <div className="addplayers-input-contain">
                 <input
                   onChange={(e) => setCurrentPlayerName(e.target.value)}
                   className="addplayers-input"
                   placeholder="Apodo jugador"
                   key={index}
                 ></input>
-                <button
-                  className="btn-add"
-                  onClick={handlePlayersInput}
-                >
+                <button className="btn-add" onClick={handlePlayersInput}>
                   <img className="btn-img" src={add} alt="add"></img>
                 </button>
               </div>
@@ -94,9 +82,6 @@ export default function AddPlayers() {
           </div>
         </div>
         <div className="addplayer-btn-container">
-          <button className="starGame-btn" type="submit">
-            Cargar información
-          </button>
           <button className="starGame-btn" type="submit">
             <Link to="/game">Comenzar a jugar</Link>
             <img className="play-img" src={play} alt=""></img>
