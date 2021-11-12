@@ -19,24 +19,7 @@ public class GameMaterializeHandle {
         this.mongoTemplate = mongoTemplate;
     }
 
-    @EventListener
-    public void handle(WinnerFound winnerFound) {
-        Query query = new Query(Criteria.where("_id").is(winnerFound.getGameId()));
-        Update update = new Update();
-        update.set("winner", new PlayerDocument(winnerFound.getId(), winnerFound.getName(), winnerFound.getCarDrivenDistance()));
 
-        mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
-    }
-
-    @EventListener
-    public void handle(SecondPlaceFound secondPlaceFound){
-        Query query = new Query(Criteria.where("_id").is(secondPlaceFound.getGameId()));
-        Update update = new Update();
-        update.set("secondPlace", new PlayerDocument(secondPlaceFound.getId(), secondPlaceFound.getName(), secondPlaceFound.getCarDrivenDistance()));
-
-        mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
-
-    }
 
     @EventListener
     public void handle(RaceStarted raceStarted) {
@@ -59,18 +42,6 @@ public class GameMaterializeHandle {
     }
 
 
-
-    @EventListener
-    public void handle(GameFinished gameFinished) {
-        Query query = new Query(Criteria.where("_id").is(gameFinished.getGameId()));
-        Update update = new Update();
-        update.set("thirdPlace", new PlayerDocument(gameFinished.getPlayerId(), gameFinished.getName(), gameFinished.getDistanceMoved()));
-        update.set("players", gameFinished.getPlayers());
-        update.set("inProgress", false);
-
-
-        mongoTemplate.updateFirst(query, update, GameDocument.class, "game").getMatchedCount();
-    }
 
 
 }
