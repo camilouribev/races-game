@@ -1,8 +1,6 @@
 import TrackBoard from "../components/TrackBoard";
-import { Link } from "react-router-dom";
 import "./CarGame.css";
 import dice from "../images/dice.png";
-import play from "../images/play.png";
 
 function CarGame() {
   return (

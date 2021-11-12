@@ -9,6 +9,9 @@ import "./AddPlayers.css";
 export default function AddPlayers() {
   const [fields, setField] = useState([]);
 
+  const [playersName, setPlayersName] = useState({ });
+  const [trackLength, setTrackLength] = useState();
+
   const handleOnChange = (e) => {
     let auxField = [];
     for (let i = 1; i <= e.target.value; i++) {
@@ -17,17 +20,38 @@ export default function AddPlayers() {
     }
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const data = { ...playersName, ...trackLength };
+    console.log("trackLength: " + trackLength);
+    console.log("playersName: " + playersName);
+
+    // dispatch(postQuestion(data));
+  };
+
+  const handlePlayersInput = (e, index) => {
+    let event = e.target.value
+    setPlayersName({ ...playersName, event });
+    console.log("playersName: " + playersName);
+  };
+
+  
   return (
     <div className="addPlayers-container">
-      <form>
-      <h1>Ingrese la longitud de la pista</h1>
+      <form onSubmit={onSubmit}>
+        <h1>Ingrese la longitud de la pista</h1>
         <div className="select-img-container">
           <div className="select-img">
             <img className="img-icon" src={track} alt="track"></img>
           </div>
           <div className="select-container">
             <label>Escriba la longitud de la lista: </label>
-            <input className="track-input" placeholder="Kilometros"></input>
+            <input
+              onChange={(e) => setTrackLength(e.target.value)}
+              className="trackinput"
+              placeholder="Kilometros"
+            ></input>
           </div>
         </div>
         <h1>Ingrese los jugadores</h1>
@@ -39,6 +63,7 @@ export default function AddPlayers() {
           <div className="select-container">
             <label>Seleccione la cantidad de jugadores: </label>
             <select className="selectAddplayer" onChange={handleOnChange}>
+              <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -50,7 +75,9 @@ export default function AddPlayers() {
           {fields.map((index) => {
             return (
               <input
+                onChange={(event) => handlePlayersInput(event, index)}
                 className="addplayers-input"
+                name={index}
                 key={index}
                 placeholder="Apodo jugador"
               ></input>
@@ -58,7 +85,10 @@ export default function AddPlayers() {
           })}
         </div>
         <div className="addplayer-btn-container">
-          <button className="starGame-btn">
+          <button className="starGame-btn" type="submit">
+            Cargar información
+          </button>
+          <button className="starGame-btn" type="submit">
             <Link to="/game">Comenzar a jugar</Link>
             <img className="play-img" src={play} alt=""></img>
           </button>
