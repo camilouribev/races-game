@@ -15,13 +15,6 @@ export default function AddPlayers() {
   const [currentPlayerName, setCurrentPlayerName] = useState("");
   const [rows, setRows] = useState([]);
 
-  const handleOnChange = (e) => {
-    let auxField = [];
-    for (let i = 1; i <= e.target.value; i++) {
-      auxField.push(i);
-      setField(auxField);
-    }
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,21 +26,16 @@ export default function AddPlayers() {
     // dispatch(postQuestion(data));
   };
 
-  
-
-
-
   const handlePlayersInput = (e) => {
-    console.log(e.key);
-    if (e.key === "Enter") {
       let array = [...playersName];
       array.push(currentPlayerName);
       setPlayersName(array);
       console.log(array);
       console.log("playersName:");
-    }
+      setRows([...playersName])
   };
   console.log("playersName: " + playersName);
+  console.log("");
 
   return (
     <div className="addPlayers-container">
@@ -78,22 +66,30 @@ export default function AddPlayers() {
               <input
                 onChange={(e) => setCurrentPlayerName(e.target.value)}
                 className="addplayers-input"
-                // name={index}
-                onKeyUp={handlePlayersInput}
                 placeholder="Apodo jugador"
               ></input>
-              <button className="btn-add" onClick={ () => setRows([...playersName])}>
+              <button
+                className="btn-add"
+                onClick={handlePlayersInput}
+              >
                 <img className="btn-img" src={add} alt="add"></img>
               </button>
             </div>
-            {rows.map((row, index) => (
-              <input
-                onChange={(e) => setCurrentPlayerName(e.target.value)}
-                className="addplayers-input"
-                onKeyUp={handlePlayersInput}
-                placeholder="Apodo jugador"
-                key={index}
-              ></input>
+            {rows.map((index) => (
+              <div>
+                <input
+                  onChange={(e) => setCurrentPlayerName(e.target.value)}
+                  className="addplayers-input"
+                  placeholder="Apodo jugador"
+                  key={index}
+                ></input>
+                <button
+                  className="btn-add"
+                  onClick={handlePlayersInput}
+                >
+                  <img className="btn-img" src={add} alt="add"></img>
+                </button>
+              </div>
             ))}
           </div>
         </div>
