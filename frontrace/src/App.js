@@ -1,33 +1,26 @@
-import TrackBoard from "./components/TrackBoard";
+import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import CarGame from "./pages/CarGame"
+import AddPlayers from "./pages/AddPlayers"
+import Podium from "./pages/Podium";
 import "./App.css";
-import dice from "./images/dice.png";
-import playerwoman from "./images/womanplayer.png";
-import playerman from "./images/manplayer.png";
-import play from "./images/play.png"
 
 function App() {
   return (
-    <div className="Title-container">
-      <h1 className="Title"> CAR GAME RACE </h1>
-      <div className="Buttons-container">
-        <button>
-          1. Agregar jugadores
-          <img className="img-icon" src={playerwoman} alt="playerwoman"></img>
-          <img className="img-icon" src={playerman} alt="playerman"></img>
-        </button>
-        <button> 
-          2. Comenzar a jugar
-        <img className="img-icon" src={play} alt="play"></img>
-        </button>
-        <button>
-          3. Lanzar dados
-          <img className="img-icon" src={dice} alt="dice"></img>
-        </button>
-      </div>
-      <div className="TrackBoard-container">
-        <TrackBoard />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<HomePage/>} />
+        <Route exact path="/game" element={<CarGame/>} />
+        <Route exact path="/addPlayers" element={<AddPlayers/>} />
+        <Route exact path="/podium" element={<Podium/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
