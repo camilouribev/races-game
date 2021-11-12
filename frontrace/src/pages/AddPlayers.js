@@ -4,6 +4,7 @@ import playerwoman from "../images/womanplayer.png";
 import playerman from "../images/manplayer.png";
 import play from "../images/play.png";
 import track from "../images/track.png";
+import add from "../images/add.png";
 import "./AddPlayers.css";
 
 export default function AddPlayers() {
@@ -12,6 +13,7 @@ export default function AddPlayers() {
   const [playersName, setPlayersName] = useState([]);
   const [trackLength, setTrackLength] = useState();
   const [currentPlayerName, setCurrentPlayerName] = useState("");
+  const [rows, setRows] = useState([]);
 
   const handleOnChange = (e) => {
     let auxField = [];
@@ -30,6 +32,10 @@ export default function AddPlayers() {
 
     // dispatch(postQuestion(data));
   };
+
+  
+
+
 
   const handlePlayersInput = (e) => {
     console.log(e.key);
@@ -52,7 +58,7 @@ export default function AddPlayers() {
             <img className="img-icon" src={track} alt="track"></img>
           </div>
           <div className="select-container">
-            <label>Escriba la longitud de la lista: </label>
+            <label>Escriba la longitud de la pista: </label>
             <input
               onChange={(e) => setTrackLength(e.target.value)}
               className="trackinput"
@@ -66,30 +72,30 @@ export default function AddPlayers() {
             <img className="img-icon" src={playerwoman} alt="play"></img>
             <img className="img-icon" src={playerman} alt="play"></img>
           </div>
-          <div className="select-container">
-            <label>Seleccione la cantidad de jugadores: </label>
-            <select className="selectAddplayer" onChange={handleOnChange}>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-        </div>
-        <div className="addplayers-input-container">
-          {fields.map((index) => {
-            return (
+          <div className="addplayers-input-container">
+            <label>Agrege el nombre de los jugadores: </label>
+            <div className="addplayers-input-contain">
               <input
                 onChange={(e) => setCurrentPlayerName(e.target.value)}
                 className="addplayers-input"
                 // name={index}
                 onKeyUp={handlePlayersInput}
-                key={index}
                 placeholder="Apodo jugador"
               ></input>
-            );
-          })}
+              <button className="btn-add" onClick={ () => setRows([...playersName])}>
+                <img className="btn-img" src={add} alt="add"></img>
+              </button>
+            </div>
+            {rows.map((row, index) => (
+              <input
+                onChange={(e) => setCurrentPlayerName(e.target.value)}
+                className="addplayers-input"
+                onKeyUp={handlePlayersInput}
+                placeholder="Apodo jugador"
+                key={index}
+              ></input>
+            ))}
+          </div>
         </div>
         <div className="addplayer-btn-container">
           <button className="starGame-btn" type="submit">
