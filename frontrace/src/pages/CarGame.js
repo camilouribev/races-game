@@ -9,18 +9,10 @@ function CarGame() {
     <div className="Title-container">
       <h1 className="Title"> CAR GAME RACE </h1>
       <div className="Buttons-container">
-        {/* Aquí pongo el boton mientras gameInProgress sea false */}
-        
-          <button>
-          <Link to="/addPlayers"> Comenzar a jugar</Link>
-            <img className="img-icon" src={play} alt="play"></img>
-          </button>
-        
-        {/* Aquí pongo el boton mientras gameInProgress sea true  */}
-        {/* <button>
-          3. Lanzar dados
+        <button className="starGame-btn">
+          Lanzar dados
           <img className="img-icon" src={dice} alt="dice"></img>
-        </button> */}
+        </button>
       </div>
       <div className="TrackBoard-container">
         <TrackBoard />

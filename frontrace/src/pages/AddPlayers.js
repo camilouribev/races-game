@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import playerwoman from "../images/womanplayer.png";
 import playerman from "../images/manplayer.png";
 import play from "../images/play.png";
+import track from "../images/track.png";
 import "./AddPlayers.css";
 
 export default function AddPlayers() {
@@ -19,6 +20,16 @@ export default function AddPlayers() {
   return (
     <div className="addPlayers-container">
       <form>
+      <h1>Ingrese la longitud de la pista</h1>
+        <div className="select-img-container">
+          <div className="select-img">
+            <img className="img-icon" src={track} alt="track"></img>
+          </div>
+          <div className="select-container">
+            <label>Escriba la longitud de la lista: </label>
+            <input className="track-input" placeholder="Kilometros"></input>
+          </div>
+        </div>
         <h1>Ingrese los jugadores</h1>
         <div className="select-img-container">
           <div className="select-img">

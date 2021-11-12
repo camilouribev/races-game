@@ -1,10 +1,6 @@
 .addPlayers-container{
-  /* margin: 50px; */
   display: flex;
   justify-content: center;
-  /* margin-left: 20%; */
-  /* width: 60%; */
-  height: 80vh;
   border: 2px solid gray;
   background-color: #85FFBD;
   background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
@@ -54,6 +50,15 @@ h1{
 }
 .addplayers-input{
   width: 60%;
+  padding: 2px;
+  margin: 5px;
+  border-radius: 7px;
+  background-color: rgba(255, 255, 255, 0.637);
+  color: black;
+  border-color: beige;
+}
+.track-input{
+  width: 10%;
   padding: 2px;
   margin: 5px;
   border-radius: 7px;

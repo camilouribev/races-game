@@ -7,6 +7,7 @@
   height: 300px;
   background-color: green;
   border: 10px solid green;
+  
 }
 .Carril{
    background: linear-gradient(90deg, rgb(201, 142, 14) 0%, rgb(40, 208, 65) 83%);
