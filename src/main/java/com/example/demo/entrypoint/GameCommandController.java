@@ -21,19 +21,13 @@ public class GameCommandController {
     private final StartGameUseCase startGameUseCase;
     private final MoveCarUseCase moveCarUseCase;
     private final ApplicationEventPublisher eventPublisher;
-    private final FinishGameUseCase finishGameUseCase;
-    private final WinnerUseCase winnerUseCase;
-    private final FinishSecondUseCase finishSecondUseCase;
 
     @Autowired
-    public GameCommandController(StartGameUseCase startGameUseCase, MoveCarUseCase moveCarUseCase, ApplicationEventPublisher eventPublisher, FinishGameUseCase finishGameUseCase, WinnerUseCase winnerUseCase, FinishSecondUseCase finishSecondUseCase) {
+    public GameCommandController(StartGameUseCase startGameUseCase, MoveCarUseCase moveCarUseCase, ApplicationEventPublisher eventPublisher) {
         this.startGameUseCase = startGameUseCase;
         this.moveCarUseCase = moveCarUseCase;
         this.eventPublisher = eventPublisher;
-        this.finishGameUseCase = finishGameUseCase;
-        this.winnerUseCase = winnerUseCase;
 
-        this.finishSecondUseCase = finishSecondUseCase;
     }
 
     @PostMapping("/createGame")
