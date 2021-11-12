@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -14,6 +15,9 @@ public class MoveCarUseCase implements Function<MoveCar, Game> {
 
     private final GameRepository repository;
     private final Random rand = SecureRandom.getInstanceStrong();
+    boolean winnerAssigned = false;
+    boolean secondPlaceAssigned = false;
+
 
     public MoveCarUseCase(GameRepository repository) throws NoSuchAlgorithmException {
         this.repository = repository;
@@ -22,11 +26,32 @@ public class MoveCarUseCase implements Function<MoveCar, Game> {
     @Override
     public Game apply(MoveCar moveCar) {
         var game = repository.findById(moveCar.getGameId());
-        game.players().forEach((playerId, player)->{
-            if(playerId.equals(moveCar.getPlayerId()) && player.carDrivenDistance()< game.trackLength() && game.inProgress()){
-                player.move((rand.nextInt(6)+1)*100);
+        var movingPlayer= game.players().get(moveCar.getPlayerId());
+
+
+        if(movingPlayer.id().equals(moveCar.getPlayerId()) && movingPlayer.carDrivenDistance()< game.trackLength() && game.inProgress()){
+                movingPlayer.move((rand.nextInt(6)+1)*100);
+                System.out.println("Winner assigned :"+ winnerAssigned);
+                System.out.println("Second place assigned :"+ secondPlaceAssigned);
+
+
+                if(movingPlayer.carDrivenDistance()>= game.trackLength() && secondPlaceAssigned ){
+                    game.setThirdPlace(moveCar.getPlayerId());
+                     game.endGame();
+                  }
+                 if(movingPlayer.carDrivenDistance()>= game.trackLength() && winnerAssigned ){
+                     game.setSecondPlace(moveCar.getPlayerId());
+                      secondPlaceAssigned = true;
+                 }
+
+                if(movingPlayer.carDrivenDistance()>= game.trackLength() && !winnerAssigned ){
+                     game.setWinner(moveCar.getPlayerId());
+                     winnerAssigned = true;
+
+                 }
             }
-        });
         return repository.save(game) ;
+
+
     }
 }

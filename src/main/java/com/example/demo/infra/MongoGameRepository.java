@@ -37,10 +37,25 @@ public class MongoGameRepository implements GameRepository {
             builder.withTrackLength(doc.getTrackLength());
 
             builder.withInProgress(doc.getInProgress());
+
             doc.getPlayers().forEach((key, gamerDocument) ->
                 builder.addPlayer(Player.from(gamerDocument.getId(), gamerDocument.getName(), gamerDocument.getCarDrivenDistance()))
             );
             var winner = doc.getWinner();
+            var secondPlace = doc.getSecondPlace();
+            var thirdPlace = doc.getThirdPlace();
+
+            Optional.ofNullable(secondPlace).ifPresent(w ->
+                    builder.withSecondPlace(Player.from(w.getId(), w.getName(), w.getCarDrivenDistance()))
+            );
+            Optional.ofNullable(thirdPlace).ifPresent(w ->
+                    builder.withThirdPlace(Player.from(w.getId(), w.getName(), w.getCarDrivenDistance()))
+            );
+
+            Optional.ofNullable(winner).ifPresent(w ->
+                    builder.withWinner(Player.from(w.getId(), w.getName(), w.getCarDrivenDistance()))
+            );
+
             Optional.ofNullable(winner).ifPresent(w ->
                 builder.addPlayer(Player.from(w.getId(), w.getName(), w.getCarDrivenDistance()))
             );
