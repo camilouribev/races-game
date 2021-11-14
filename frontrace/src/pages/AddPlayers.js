@@ -21,8 +21,10 @@ export default function AddPlayers() {
   };
 
   const handlePlayersInput = (e) => {
+    
     let array = [...playersName];
     array.push(currentPlayerName);
+    setCurrentPlayerName("");
     setPlayersName(array);
   };
   console.log(playersName);
@@ -54,6 +56,9 @@ export default function AddPlayers() {
             <label>Agrege el nombre de los jugadores: </label>
             <div className="addplayers-input-contain">
               <input
+                required
+                type="text"
+                value={currentPlayerName}
                 onChange={(e) => setCurrentPlayerName(e.target.value)}
                 className="addplayers-input"
                 placeholder="Apodo jugador"
@@ -61,24 +66,10 @@ export default function AddPlayers() {
               <button
                 className="btn-add"
                 onClick={handlePlayersInput}
-                disabled={currentPlayerName === ""}
               >
                 <img className="btn-img" src={add} alt="add"></img>
               </button>
             </div>
-            {playersName.map((value, index) => (
-              <div className="addplayers-input-contain">
-                <input
-                  onChange={(e) => setCurrentPlayerName(e.target.value)}
-                  className="addplayers-input"
-                  placeholder="Apodo jugador"
-                  key={index}
-                ></input>
-                <button className="btn-add" onClick={handlePlayersInput}>
-                  <img className="btn-img" src={add} alt="add"></img>
-                </button>
-              </div>
-            ))}
           </div>
         </div>
         <div className="addplayer-btn-container">
