@@ -1,29 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Store } from "../provider/Provider";
+
 import playerwoman from "../images/womanplayer.png";
 import playerman from "../images/manplayer.png";
 import play from "../images/play.png";
 import track from "../images/track.png";
 import add from "../images/add.png";
 import "./AddPlayers.css";
+import { types } from "../reducers/reducer";
 
 export default function AddPlayers() {
-  const [playersName, setPlayersName] = useState([]);
+  const [store, dispatch] = useContext(Store);
+  const { players, tracklength } = store;
+  const [playersName, setPlayersName] = useState([{ id: "", name: "" }]);
   const [trackLength, setTrackLength] = useState();
-  const [currentPlayerName, setCurrentPlayerName] = useState("");
-
+  const [currentPlayerName, setCurrentPlayerName] = useState();
+  const { v4: uuidv4 } = require("uuid");
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const data = { ...playersName, ...trackLength };
+    const data = { players: playersName, trackLength: trackLength };
 
     // dispatch(postQuestion(data));
   };
 
-  const handlePlayersInput = (e) => {
-    
+  const handlePlayersInput = () => {
     let array = [...playersName];
-    array.push(currentPlayerName);
+    array.push({ id: uuidv4(), name: currentPlayerName });
+
     setCurrentPlayerName("");
     setPlayersName(array);
   };
@@ -59,21 +64,24 @@ export default function AddPlayers() {
                 required
                 type="text"
                 value={currentPlayerName}
-                onChange={(e) => setCurrentPlayerName(e.target.value)}
+                onChange={(e) => {
+                  setCurrentPlayerName(e.target.value);
+                }}
                 className="addplayers-input"
                 placeholder="Apodo jugador"
               ></input>
-              <button
-                className="btn-add"
-                onClick={handlePlayersInput}
-              >
+              <button className="btn-add" onClick={handlePlayersInput}>
                 <img className="btn-img" src={add} alt="add"></img>
               </button>
             </div>
           </div>
         </div>
         <div className="addplayer-btn-container">
-          <button className="starGame-btn" type="submit">
+          <button
+            className="starGame-btn"
+            type="submit"
+            onClick={() => dispatch({ type: types.addGameId })}
+          >
             <Link to="/game">Comenzar a jugar</Link>
             <img className="play-img" src={play} alt=""></img>
           </button>

@@ -3,12 +3,16 @@ import "./CarGame.css";
 import dice from "../images/dice.png";
 
 function CarGame() {
+  
+
+  
+//Al lanzar los dados llevo mandar al back el id del juego y jugador actual
   return (
     <div className="Title-container">
       <h1 className="Title"> CAR GAME RACE </h1>
       <div className="Buttons-container">
-        <button className="starGame-btn">
-          Lanzar dados
+        <button className="starGame-btn" >
+          Lanzar dados 
           <img className="img-icon" src={dice} alt="dice"></img>
         </button>
       </div>

@@ -1,16 +1,16 @@
 import React, { useReducer, createContext } from "react";
-import reducer from "../Reducer/Reducer";
+import reducer from "../reducers/reducer";
+import { initialStore } from "../reducers/reducer";
 
-const initialState = {
-  players: { list: [], item: {} }
-};
-const Store = createContext(initialState);
+
+
+const Store = createContext();
 
 function StoreProvider(props) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialStore);
 
   return (
-    <Store.Provider value={{ state, dispatch }}>
+    <Store.Provider value={[state, dispatch] }>
       {props.children}
     </Store.Provider>
   );
